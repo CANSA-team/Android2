@@ -1,3 +1,29 @@
 <resources>
-    <string name="app_name">CANSA-Team</string>
+    <string name="app_name">Project</string>
+    <string name="tittile_license_a1">License A1</string>
+    <string name="tittile_license_a2">License A2</string>
+    <string name="tittile_license_a3">License A3</string>
+    <string name="tittile_license_a4">License A4</string>
+    <string name="tittile_license_b1">License B1</string>
+    <string name="tittile_license_b2">License B2</string>
+    <string name="tittile_license_c">License C</string>
+    <string name="tittile_license_d">License D</string>
+    <string name="tittile_license_e">License E</string>
+    <string name="tittile_license_fc">License FC</string>
+    <string name="courses">Courses</string>
+    <string name="exit">Exit</string>
+    <string name="string_dashboard">ATGT CANSA</string>
+    <string name="result_txt">Số câu đúng </string>
+    <string name="btn_result">Kết quả</string>
+    <string name="menu">Menu</string>
+    <!--  string test -->
+    <string name="testT">Tại nơi đường giao nhau, khi người điều khiển giao thông ra hiệu lệnh bằng hai tay hoặc một tay giang ngang để báo hiệu thì người tham gia giao thông phải đi như thế nào là đúng quy tắc giao thông ?
+</string>
+    <string name="cau1">Câu 1</string>
+    <string name="result_true">23/25</string>
+    <string name="a">Người tham gia giao thông ở phía trước và ở phía sau người điều khiển giao thông phải dừng lại asas
+</string>
+    <string name="b">2- Người tham gia giao thông ở phía trước và ở phía sau người điều khiển giao thông được đi thẳng; người tham gia giao thông ở phía bên phải và bên trái người điều khiển được đi thẳng và rẽ phải.
+</string>
+    <!--  end string text  -->
 </resources>
