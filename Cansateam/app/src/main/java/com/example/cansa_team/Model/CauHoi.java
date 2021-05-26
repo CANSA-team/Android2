@@ -1,4 +1,4 @@
-package com.example.cansa_team_android2.Model;
+package com.example.cansa_team.Model;
 
 import java.util.ArrayList;
 
@@ -6,19 +6,18 @@ public class CauHoi {
     public CauHoi() {
     }
 
-    public CauHoi(HinhAnh hinhAnh, String cauHoi, ArrayList<String> cauTraLoi, int dapAn, int loaiBang) {
+    public CauHoi(String hinhAnh, String cauHoi, ArrayList<String> cauTraLoi, int dapAn) {
         this.hinhAnh = hinhAnh;
         this.cauHoi = cauHoi;
         this.cauTraLoi = cauTraLoi;
         this.dapAn = dapAn;
-        this.loaiBang = loaiBang;
     }
 
-    public HinhAnh getHinhAnh() {
+    public String getHinhAnh() {
         return hinhAnh;
     }
 
-    public void setHinhAnh(HinhAnh hinhAnh) {
+    public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
     }
 
@@ -46,19 +45,11 @@ public class CauHoi {
         this.dapAn = dapAn;
     }
 
-    public int getLoaiBang() {
-        return loaiBang;
-    }
-
-    public void setLoaiBang(int loaiBang) {
-        this.loaiBang = loaiBang;
-    }
-
-    private HinhAnh hinhAnh;
+    private String hinhAnh;
     private  String cauHoi;
     private ArrayList<String> cauTraLoi;
     private  int dapAn;
-    private  int loaiBang;
+
 
 
 }
