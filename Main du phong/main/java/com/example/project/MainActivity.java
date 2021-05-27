@@ -1,4 +1,4 @@
-package com.example.cansa_team;
+package com.example.project;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,6 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.cansa_team.R;
 
 public class MainActivity extends AppCompatActivity {
     private LinearLayout licenseA1;
