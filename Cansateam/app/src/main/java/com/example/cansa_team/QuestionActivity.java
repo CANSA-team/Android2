@@ -15,7 +15,6 @@ public class QuestionActivity extends AppCompatActivity {
     private ImageView btnPrevious;
     private ImageView btnNext;
     private Button btnResult;
-    //cau tra loi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +48,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         // Nut tro lai cau hoi phia truoc
         btnPrevious = findViewById(R.id.btn_previous);
+        
         // Nut tro lai cau hoi tiep theo
         btnNext = findViewById(R.id.btn_next);
     }
