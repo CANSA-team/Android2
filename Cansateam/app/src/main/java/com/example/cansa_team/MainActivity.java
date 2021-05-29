@@ -8,8 +8,6 @@ import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.cansa_team.R;
-
 public class MainActivity extends AppCompatActivity {
     private LinearLayout licenseA1;
     private LinearLayout licenseA2;

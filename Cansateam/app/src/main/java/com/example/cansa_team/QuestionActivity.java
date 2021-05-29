@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.cansa_team.R;
+
 
 public class QuestionActivity extends AppCompatActivity {
     private ImageView questionExit;

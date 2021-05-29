@@ -15,7 +15,8 @@
     <string name="string_dashboard">ATGT CANSA</string>
     <string name="result_txt">Số câu đúng </string>
     <string name="btn_result">Kết quả</string>
-    <string name="menu">Menu</string>
+    <string name="result_text">Kết quả : </string>
+    <string name="back">Thi lại</string>
     <!--  string test -->
     <string name="testT">Tại nơi đường giao nhau, khi người điều khiển giao thông ra hiệu lệnh bằng hai tay hoặc một tay giang ngang để báo hiệu thì người tham gia giao thông phải đi như thế nào là đúng quy tắc giao thông ?
 </string>

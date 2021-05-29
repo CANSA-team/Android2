@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cansa_team.Model.Results;
 import com.example.cansa_team.adapter.ResultAdapter;
-import com.example.cansa_team.R;
 
 import java.util.ArrayList;
 
@@ -22,7 +21,6 @@ public class ResultActivity extends AppCompatActivity {
     private ResultAdapter resultAdapter;
     private ImageView home;
     private TextView total;
-    private Button menu;
     /*
      *  su kien tra ve man hinh home tu man hinh ket qua
      *  activiy_result.xml -> activiy_main.xml
@@ -52,14 +50,12 @@ public class ResultActivity extends AppCompatActivity {
 
         // Bieu tuong home
         home = findViewById(R.id.home);
-        // Button Menu
-        menu = findViewById(R.id.btnMenu);
+
         // So cau tra loi dung / tong so cau (23/25)
         total =  findViewById(R.id.total);
 
         // Set Event
         home.setOnClickListener(rHome);
-        menu.setOnClickListener(rHome);
     }
 
     /*

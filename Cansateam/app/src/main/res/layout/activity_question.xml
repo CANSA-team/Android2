@@ -62,11 +62,11 @@
         android:layout_height="0dp"
         android:layout_weight="4"
         android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_margin="11dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
+            android:gravity="start"
             android:text="@string/testT"
             android:textColor="#000000"
             android:textSize="18dp" android:textStyle="bold" />
@@ -146,7 +146,7 @@
             android:gravity="center">
             <Button
                 android:id="@+id/btn_result"
-                android:background="@color/purple_700"
+                android:background="@color/btn_question_end"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_result"/>

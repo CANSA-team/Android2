@@ -18,4 +18,7 @@
     <color name="color_nav_result">#FFB6C1</color>
     <color name="radio_color_selected">#F5E190</color>
     <color name="radio_color_text_selected">#612EC7</color>
+    <color name="btn_question_end">#25D366</color>
+    <color name="btn_back_test">#0077B5</color>
+
 </resources>
