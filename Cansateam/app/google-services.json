@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "768293825419",
-    "project_id": "android-cansa-team",
-    "storage_bucket": "android-cansa-team.appspot.com"
+    "project_number": "407278173432",
+    "firebase_url": "https://cansa-94472-default-rtdb.firebaseio.com",
+    "project_id": "cansa-94472",
+    "storage_bucket": "cansa-94472.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:768293825419:android:e7b45e168fb1856a055d8e",
+        "mobilesdk_app_id": "1:407278173432:android:29cc386e12fb290ca60f0d",
         "android_client_info": {
           "package_name": "com.example.cansa_team"
         }
       },
       "oauth_client": [
         {
-          "client_id": "768293825419-5r8tcq8pc4rv7f1uc89um2cg0fl89stg.apps.googleusercontent.com",
+          "client_id": "407278173432-renqoop3l0drnfqtjdtfb29hccm1jrle.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAbiTq1j0TX-DvyE3Yq_KIHntTMtBkA6Fk"
+          "current_key": "AIzaSyCOTwuIR8oIzkxIBtG3YnAwMratY_VBOLM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "768293825419-5r8tcq8pc4rv7f1uc89um2cg0fl89stg.apps.googleusercontent.com",
+              "client_id": "407278173432-renqoop3l0drnfqtjdtfb29hccm1jrle.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "407278173432-sbg033ihchjfbad6l6562fteijv4uo7a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "cansateam.ProjectIOS"
+              }
             }
           ]
         }

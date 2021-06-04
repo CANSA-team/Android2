@@ -3,10 +3,15 @@ package com.example.cansa_team.Model;
 import java.util.ArrayList;
 
 public class CauHoi {
-    private String hinhAnh;
-    private  String cauHoi;
-    private ArrayList<String> cauTraLoi;
-    private  int dapAn;
+    public CauHoi() {
+    }
+
+    public CauHoi(String hinhAnh, String cauHoi, ArrayList<String> cauTraLoi, int dapAn) {
+        this.hinhAnh = hinhAnh;
+        this.cauHoi = cauHoi;
+        this.cauTraLoi = cauTraLoi;
+        this.dapAn = dapAn;
+    }
 
     public String getHinhAnh() {
         return hinhAnh;
@@ -40,16 +45,10 @@ public class CauHoi {
         this.dapAn = dapAn;
     }
 
-    public CauHoi() {
-    }
-
-    public CauHoi(String hinhAnh, String cauHoi, ArrayList<String> cauTraLoi, int dapAn) {
-        this.hinhAnh = hinhAnh;
-        this.cauHoi = cauHoi;
-        this.cauTraLoi = cauTraLoi;
-        this.dapAn = dapAn;
-    }
-
+    private String hinhAnh;
+    private  String cauHoi;
+    private ArrayList<String> cauTraLoi;
+    private  int dapAn;
 
 
 
