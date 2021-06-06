@@ -35,14 +35,16 @@ public class TienIch {
 
     public static String changeTimeToString(long time){
         String result = "";
+        String strSeconds = "";
+        String strMinutes = "";
 
-        long seconds = 0;
-        long minute = 0;
+        strSeconds = (time % 60)+"";
+        strMinutes = (time / 60)+"";
 
-        seconds = time % 60;
-        minute = time / 60;
+        strSeconds = strSeconds.length()==1 ? ("0"+strSeconds): strSeconds;
+        strMinutes = strMinutes.length()==1 ? ("0"+strMinutes): strMinutes;
 
-        result = minute+":"+seconds;
+        result = strMinutes+":"+strSeconds;
 
         return  result;
     }

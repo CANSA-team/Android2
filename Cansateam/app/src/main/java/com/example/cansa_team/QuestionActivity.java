@@ -63,7 +63,7 @@ public class QuestionActivity extends AppCompatActivity {
         intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        flagCauHoi = bundle.get(MainActivity.FLAG).toString();
+        flagCauHoi = bundle.get(LoadActivity.FLAG).toString();
         cauHois = bundle.getParcelableArrayList(flagCauHoi);
         countDownTime = bundle.getString(flagCauHoi+"count down");
 
@@ -103,6 +103,7 @@ public class QuestionActivity extends AppCompatActivity {
             public void onFinish() {
                 intent.setClass(QuestionActivity.this, ResultActivity.class);
                 startActivity(intent);
+                finish();
             }
         }.start();
 
@@ -116,7 +117,7 @@ public class QuestionActivity extends AppCompatActivity {
                 finish();
                 intent.setClass(QuestionActivity.this, ResultActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString(MainActivity.FLAG, flagCauHoi);
+                bundle.putString(LoadActivity.FLAG, flagCauHoi);
                 bundle.putString(flagCauHoi + "count down", countDownTime);
                 intent.putExtras(bundle);
                 startActivity(intent);

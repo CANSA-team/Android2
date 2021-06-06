@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cansa_team.Data.FirebaseData;
 import com.example.cansa_team.Model.CauHoi;
 import com.example.cansa_team.Model.Results;
 import com.example.cansa_team.Model.TienIch;
@@ -59,8 +60,7 @@ public class ResultActivity extends AppCompatActivity {
         resultAdapter = new ResultAdapter(this);
         resultsArrayList = QuestionActivity.resultsArrayList;
         countResult = resultsArrayList.size();
-        flagCauHoi = bundle.get(MainActivity.FLAG).toString();
-        totalResult = countTrueChose +"/"+resultsArrayList.size();
+        flagCauHoi = bundle.get(LoadActivity.FLAG).toString();
         countDownTime = bundle.getString(flagCauHoi+"count down");
 
         //đếm số lượng câu đúng
@@ -81,6 +81,7 @@ public class ResultActivity extends AppCompatActivity {
             txtResult.setText(SUCCESS);
         }
 
+        totalResult = countTrueChose +"/"+resultsArrayList.size();
         //hiển thị ra màn hình kết quả đậu trượt
         total.setText(totalResult);
 
@@ -95,34 +96,34 @@ public class ResultActivity extends AppCompatActivity {
         btnBackText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 Intent intent = new Intent(ResultActivity.this, QuestionActivity.class);
                 Bundle bundle = new Bundle();
                 //lấy ngẫu nhiên số lượng câu hỏi theo loại bằng
                 ArrayList<CauHoi> cauHois = new ArrayList<>();
                 switch (flagCauHoi){
-                    case MainActivity.BANG_A1:
-                        cauHois = TienIch.selectRandomElements(MainActivity.arrBangA1, countResult);
+                    case LoadActivity.BANG_A1:
+                        cauHois = TienIch.selectRandomElements(FirebaseData.bangA1, countResult);
                         break;
-                    case MainActivity.BANG_A2:
-                        cauHois = TienIch.selectRandomElements(MainActivity.arrBangA2, countResult);
+                    case LoadActivity.BANG_A2:
+                        cauHois = TienIch.selectRandomElements(FirebaseData.bangA2, countResult);
                         break;
-                    case MainActivity.BANG_A3_A4:
-                        cauHois = TienIch.selectRandomElements(MainActivity.arrBangA3_A4, countResult);
+                    case LoadActivity.BANG_A3_A4:
+                        cauHois = TienIch.selectRandomElements(FirebaseData.bangA3_A4, countResult);
                         break;
-                    case MainActivity.BANG_B1:
-                        cauHois = TienIch.selectRandomElements(MainActivity.arrBangB1, countResult);
+                    case LoadActivity.BANG_B1:
+                        cauHois = TienIch.selectRandomElements(FirebaseData.bangB1, countResult);
                         break;
-                    case MainActivity.BANG_B2_C_D_E_F:
-                        cauHois = TienIch.selectRandomElements(MainActivity.arrBangB2_C_D_E_F, countResult);
+                    case LoadActivity.BANG_B2_C_D_E_F:
+                        cauHois = TienIch.selectRandomElements(FirebaseData.bangB2_C_D_E_F, countResult);
                         break;
                 }
                 //tạo cờ xác định loại bằng chuyển qua
                 bundle.putParcelableArrayList(flagCauHoi, cauHois);
-                bundle.putString(MainActivity.FLAG, flagCauHoi);
+                bundle.putString(LoadActivity.FLAG, flagCauHoi);
                 bundle.putString(flagCauHoi + "count down", countDownTime);
                 intent.putExtras(bundle);
                 startActivity(intent);
+                finish();
             }
         });
 

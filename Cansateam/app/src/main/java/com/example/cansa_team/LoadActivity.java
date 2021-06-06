@@ -1,136 +1,109 @@
 package com.example.cansa_team;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.util.Log;
 import android.widget.TextView;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.cansa_team.Data.FirebaseData;
 import com.example.cansa_team.Model.CauHoi;
-import com.example.cansa_team.Model.Results;
-import com.example.cansa_team.Model.TienIch;
-import com.example.cansa_team.adapter.ResultAdapter;
+import com.example.cansa_team.Model.ConnectionReceiver;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.HashMap;
+import java.util.Map;
 
-public class ResultActivity extends AppCompatActivity {
-    private Button btnBackText;
-    private RecyclerView listResult;
-    private ImageView home;
-    private TextView total;
-    private TextView txtResult;
+public class LoadActivity extends AppCompatActivity {
+    public static final String BANG_A1 = "Bang A1";
+    public static final String BANG_A2 = "Bang A2";
+    public static final String BANG_A3_A4 = "Bang A3,A4";
+    public static final String BANG_B1 = "Bang B1";
+    public static final String BANG_B2_C_D_E_F = "Bang B2, C, D, E, F";
+    public static final int COUNT_BANG_A = 20;
+    public static final int COUNT_BANG_B_C_D_E_F = 30;
+    public static final String FLAG = "flag";
+    public static final String COUNT_DOWN_BANG_A = "15:00";
+    public static final String COUNT_DOWN_BANG_B_C_D_E_F = "20:00";
 
-    private String totalResult;
-    private ArrayList<Results> resultsArrayList;
-    private int deathPoint;
-    private int countResult;
-    private int countTrueChose;
-    private String flagCauHoi;
-    private Intent intent;
-    private ResultAdapter resultAdapter;
-    private String countDownTime;
-
-
-    private static final String SUCCESS  = "Đậu";
-    private static final String FAIL  = "Trượt";
+    private FirebaseDatabase firebaseDatabase;
+    private TextView txtWarning;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result);
+        setContentView(R.layout.load_layout);
 
-        home = findViewById(R.id.home);
-        total =  findViewById(R.id.total);
-        listResult = findViewById(R.id.listResult);
-        txtResult = findViewById(R.id.txt_result);
-        btnBackText = findViewById(R.id.btnBackText);
+        if (ConnectionReceiver.isConnected()) {
+            //Khởi tạo liên kết firebase tạo biến với từng loại bằng
+            firebaseDatabase = FirebaseDatabase.getInstance();
 
-        //lấy dữ liệu từ màn hình QuestionActivity
-        Random random = new Random();
-        intent = getIntent();
-        Bundle bundle = intent.getExtras();
-
-        resultAdapter = new ResultAdapter(this);
-        resultsArrayList = QuestionActivity.resultsArrayList;
-        countResult = resultsArrayList.size();
-        flagCauHoi = bundle.get(MainActivity.FLAG).toString();
-        totalResult = countTrueChose +"/"+resultsArrayList.size();
-        countDownTime = bundle.getString(flagCauHoi+"count down");
-
-        //đếm số lượng câu đúng
-        countTrueChose = TienIch.countTrueChoseResults(resultsArrayList);
-
-        //tạo ngẫu nhiên 1 câu điểm liệt
-        deathPoint = random.nextInt(countResult-1);
-
-        /*
-        * nếu câu điểm liệt sai hoặc đúng dưới 90% tổng số câu => trượt
-        * ngược lại => đậu
-        * */
-        if(resultsArrayList.get(deathPoint).getResourceImage() == R.drawable.ic_false || (countResult*0.9)>countTrueChose)
-        {
-            txtResult.setText(FAIL);
-        }else
-        {
-            txtResult.setText(SUCCESS);
-        }
-
-        //hiển thị ra màn hình kết quả đậu trượt
-        total.setText(totalResult);
-
-        // Set Event
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        btnBackText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                Intent intent = new Intent(ResultActivity.this, QuestionActivity.class);
-                Bundle bundle = new Bundle();
-                //lấy ngẫu nhiên số lượng câu hỏi theo loại bằng
-                ArrayList<CauHoi> cauHois = new ArrayList<>();
-                switch (flagCauHoi){
-                    case MainActivity.BANG_A1:
-                        cauHois = TienIch.selectRandomElements(MainActivity.arrBangA1, countResult);
-                        break;
-                    case MainActivity.BANG_A2:
-                        cauHois = TienIch.selectRandomElements(MainActivity.arrBangA2, countResult);
-                        break;
-                    case MainActivity.BANG_A3_A4:
-                        cauHois = TienIch.selectRandomElements(MainActivity.arrBangA3_A4, countResult);
-                        break;
-                    case MainActivity.BANG_B1:
-                        cauHois = TienIch.selectRandomElements(MainActivity.arrBangB1, countResult);
-                        break;
-                    case MainActivity.BANG_B2_C_D_E_F:
-                        cauHois = TienIch.selectRandomElements(MainActivity.arrBangB2_C_D_E_F, countResult);
-                        break;
+            firebaseDatabase.getReference().orderByValue().addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Log.d("TAG", "onDataChange: ");
+                    FirebaseData.bangA1 = new ArrayList<>();
+                    FirebaseData.bangA2 = new ArrayList<>();
+                    FirebaseData.bangA3_A4 = new ArrayList<>();
+                    FirebaseData.bangB1 = new ArrayList<>();
+                    FirebaseData.bangB2_C_D_E_F = new ArrayList<>();
+                    for (DataSnapshot data : snapshot.getChildren()) {
+                        switch (data.getKey()) {
+                            case BANG_A1:
+                                for (DataSnapshot dataChildren : data.getChildren()) {
+                                    FirebaseData.bangA1.add(dataChildren.getValue(CauHoi.class));
+                                }
+                                break;
+                            case BANG_A2:
+                                for (DataSnapshot dataChildren : data.getChildren()) {
+                                    FirebaseData.bangA2.add(dataChildren.getValue(CauHoi.class));
+                                }
+                                break;
+                            case BANG_A3_A4:
+                                for (DataSnapshot dataChildren : data.getChildren()) {
+                                    FirebaseData.bangA3_A4.add(dataChildren.getValue(CauHoi.class));
+                                }
+                                break;
+                            case BANG_B1:
+                                for (DataSnapshot dataChildren : data.getChildren()) {
+                                    FirebaseData.bangB1.add(dataChildren.getValue(CauHoi.class));
+                                }
+                                break;
+                            case BANG_B2_C_D_E_F:
+                                for (DataSnapshot dataChildren : data.getChildren()) {
+                                    FirebaseData.bangB2_C_D_E_F.add(dataChildren.getValue(CauHoi.class));
+                                }
+                                break;
+                        }
+                    }
+                    startActivity(new Intent(LoadActivity.this, MainActivity.class));
+                    finish();
                 }
-                //tạo cờ xác định loại bằng chuyển qua
-                bundle.putParcelableArrayList(flagCauHoi, cauHois);
-                bundle.putString(MainActivity.FLAG, flagCauHoi);
-                bundle.putString(flagCauHoi + "count down", countDownTime);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
 
-        //SetAdapter, Ham getResults()->ArrayList<Results>
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3);
-        gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
-        listResult.setLayoutManager(gridLayoutManager);
-        resultAdapter.setData(resultsArrayList);
-        listResult.setAdapter(resultAdapter);
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+        else {
+            String warning = "Không có kết nối Internet!";
+            Toast.makeText(this,warning,Toast.LENGTH_LONG).show();
+            txtWarning = findViewById(R.id.txt_warning);
+            txtWarning.setText(warning);
+        }
     }
 }
