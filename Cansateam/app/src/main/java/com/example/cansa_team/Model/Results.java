@@ -1,26 +1,27 @@
 package com.example.cansa_team.Model;
-/*
- * Class: Answer
- * Description: gom 2 tham so
- *  +answeredIndex:String thu tu cau hoi da tra loi
- *  +resourceImage:int setImage
- * => The hien doi tuong answered trong layout_list_result
- */
+
+import com.example.cansa_team.R;
+
 public class Results {
-    private String answeredIndex;
+    private int answeredIndex;
     private int resourceImage;
+    private int choses;
+    public int getChoses() {
+        return choses;
+    }
 
-    public Results(String answeredIndex, int resourceImage) {
+    public void setChoses(int choses) {
+        this.choses = choses;
+    }
+
+    public Results(int answeredIndex) {
         this.answeredIndex = answeredIndex;
-        this.resourceImage = resourceImage;
+        this.resourceImage = R.drawable.ic_false;
+        this.choses = 0;
     }
 
-    public String getAnsweredIndex() {
+    public int getAnsweredIndex() {
         return answeredIndex;
-    }
-
-    public void setAnsweredIndex(String answer) {
-        this.answeredIndex = answer;
     }
 
     public int getResourceImage() {

@@ -1,4 +1,5 @@
 <resources>
+    <string name="tag">btn_answer</string>
     <string name="app_name">Project</string>
     <string name="tittile_license_a1">License A1</string>
     <string name="tittile_license_a2">License A2</string>

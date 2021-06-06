@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultViewHolder>{
     private Context mContext;
     private ArrayList<Results> mListResult;
+    private String nameResult;
     @NonNull
     @Override
     public ResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,8 +40,9 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         if (results == null){
             return;
         }
+        nameResult = "Câu "+(results.getAnsweredIndex()+1);
         holder.img.setImageResource(results.getResourceImage());
-        holder.name.setText(results.getAnsweredIndex());
+        holder.name.setText(nameResult);
     }
 
     @Override

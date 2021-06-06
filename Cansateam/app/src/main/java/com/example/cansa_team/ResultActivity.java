@@ -11,93 +11,126 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cansa_team.Model.CauHoi;
 import com.example.cansa_team.Model.Results;
+import com.example.cansa_team.Model.TienIch;
 import com.example.cansa_team.adapter.ResultAdapter;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ResultActivity extends AppCompatActivity {
+    private Button btnBackText;
     private RecyclerView listResult;
-    private ResultAdapter resultAdapter;
     private ImageView home;
     private TextView total;
-    /*
-     *  su kien tra ve man hinh home tu man hinh ket qua
-     *  activiy_result.xml -> activiy_main.xml
-     */
-    private View.OnClickListener rHome = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(ResultActivity.this, MainActivity.class);
-            startActivity(intent);
-        }
-    };
+    private TextView txtResult;
+
+    private String totalResult;
+    private ArrayList<Results> resultsArrayList;
+    private int deathPoint;
+    private int countResult;
+    private int countTrueChose;
+    private String flagCauHoi;
+    private Intent intent;
+    private ResultAdapter resultAdapter;
+    private String countDownTime;
+
+
+    private static final String SUCCESS  = "Đậu";
+    private static final String FAIL  = "Trượt";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        //Lay doi tuong RecyclerView trong activity__result
+        home = findViewById(R.id.home);
+        total =  findViewById(R.id.total);
         listResult = findViewById(R.id.listResult);
+        txtResult = findViewById(R.id.txt_result);
+        btnBackText = findViewById(R.id.btnBackText);
+
+        //lấy dữ liệu từ màn hình QuestionActivity
+        Random random = new Random();
+        intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
         resultAdapter = new ResultAdapter(this);
+        resultsArrayList = QuestionActivity.resultsArrayList;
+        countResult = resultsArrayList.size();
+        flagCauHoi = bundle.get(MainActivity.FLAG).toString();
+        totalResult = countTrueChose +"/"+resultsArrayList.size();
+        countDownTime = bundle.getString(flagCauHoi+"count down");
+
+        //đếm số lượng câu đúng
+        countTrueChose = TienIch.countTrueChoseResults(resultsArrayList);
+
+        //tạo ngẫu nhiên 1 câu điểm liệt
+        deathPoint = random.nextInt(countResult-1);
+
+        /*
+        * nếu câu điểm liệt sai hoặc đúng dưới 90% tổng số câu => trượt
+        * ngược lại => đậu
+        * */
+        if(resultsArrayList.get(deathPoint).getResourceImage() == R.drawable.ic_false || (countResult*0.9)>countTrueChose)
+        {
+            txtResult.setText(FAIL);
+        }else
+        {
+            txtResult.setText(SUCCESS);
+        }
+
+        //hiển thị ra màn hình kết quả đậu trượt
+        total.setText(totalResult);
+
+        // Set Event
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        btnBackText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent = new Intent(ResultActivity.this, QuestionActivity.class);
+                Bundle bundle = new Bundle();
+                //lấy ngẫu nhiên số lượng câu hỏi theo loại bằng
+                ArrayList<CauHoi> cauHois = new ArrayList<>();
+                switch (flagCauHoi){
+                    case MainActivity.BANG_A1:
+                        cauHois = TienIch.selectRandomElements(MainActivity.arrBangA1, countResult);
+                        break;
+                    case MainActivity.BANG_A2:
+                        cauHois = TienIch.selectRandomElements(MainActivity.arrBangA2, countResult);
+                        break;
+                    case MainActivity.BANG_A3_A4:
+                        cauHois = TienIch.selectRandomElements(MainActivity.arrBangA3_A4, countResult);
+                        break;
+                    case MainActivity.BANG_B1:
+                        cauHois = TienIch.selectRandomElements(MainActivity.arrBangB1, countResult);
+                        break;
+                    case MainActivity.BANG_B2_C_D_E_F:
+                        cauHois = TienIch.selectRandomElements(MainActivity.arrBangB2_C_D_E_F, countResult);
+                        break;
+                }
+                //tạo cờ xác định loại bằng chuyển qua
+                bundle.putParcelableArrayList(flagCauHoi, cauHois);
+                bundle.putString(MainActivity.FLAG, flagCauHoi);
+                bundle.putString(flagCauHoi + "count down", countDownTime);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
         //SetAdapter, Ham getResults()->ArrayList<Results>
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3);
+        gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         listResult.setLayoutManager(gridLayoutManager);
-        resultAdapter.setData(getResults());
+        resultAdapter.setData(resultsArrayList);
         listResult.setAdapter(resultAdapter);
-
-        // Bieu tuong home
-        home = findViewById(R.id.home);
-
-        // So cau tra loi dung / tong so cau (23/25)
-        total =  findViewById(R.id.total);
-
-        // Set Event
-        home.setOnClickListener(rHome);
-    }
-
-    /*
-     * Tra ve ArrayList<Results> de set Adapter
-     * new Results(answeredIndex,resourceImage)
-     *  -answeredIndex:String thu tu cau tra loi
-     *  -resourceImage: Cau tra loi
-     *    +Dung set-> R.drawable.ic_true,
-     *    +Sai set-> R.drawable.ic_false
-     */
-    private ArrayList<Results> getResults(){
-        ArrayList<Results> resultsArrayList = new ArrayList<>();
-        resultsArrayList.add(new Results("Cau 1", R.drawable.ic_true));
-        resultsArrayList.add(new Results("Cau 2", R.drawable.ic_false));
-        resultsArrayList.add(new Results("Cau 3", R.drawable.ic_true));
-        resultsArrayList.add(new Results("Cau 4", R.drawable.ic_false));
-        resultsArrayList.add(new Results("Cau 5", R.drawable.ic_true));
-        resultsArrayList.add(new Results("Cau 6", R.drawable.ic_false));
-        resultsArrayList.add(new Results("Cau 7", R.drawable.ic_true));
-        resultsArrayList.add(new Results("Cau 8", R.drawable.ic_false));
-        resultsArrayList.add(new Results("Cau 9", R.drawable.ic_true));
-        resultsArrayList.add(new Results("Cau 10", R.drawable.ic_false));
-        resultsArrayList.add(new Results("Cau 1", R.drawable.ic_true));
-        resultsArrayList.add(new Results("Cau 2", R.drawable.ic_false));
-        resultsArrayList.add(new Results("Cau 3", R.drawable.ic_true));
-        resultsArrayList.add(new Results("Cau 4", R.drawable.ic_false));
-        resultsArrayList.add(new Results("Cau 5", R.drawable.ic_true));
-        resultsArrayList.add(new Results("Cau 6", R.drawable.ic_false));
-        resultsArrayList.add(new Results("Cau 7", R.drawable.ic_true));
-        resultsArrayList.add(new Results("Cau 8", R.drawable.ic_false));
-        resultsArrayList.add(new Results("Cau 9", R.drawable.ic_true));
-        resultsArrayList.add(new Results("Cau 10", R.drawable.ic_false));
-        resultsArrayList.add(new Results("Cau 1", R.drawable.ic_true));
-        resultsArrayList.add(new Results("Cau 2", R.drawable.ic_false));
-        resultsArrayList.add(new Results("Cau 3", R.drawable.ic_true));
-        resultsArrayList.add(new Results("Cau 4", R.drawable.ic_false));
-        resultsArrayList.add(new Results("Cau 5", R.drawable.ic_true));
-        resultsArrayList.add(new Results("Cau 6", R.drawable.ic_false));
-        resultsArrayList.add(new Results("Cau 7", R.drawable.ic_true));
-        resultsArrayList.add(new Results("Cau 8", R.drawable.ic_false));
-        resultsArrayList.add(new Results("Cau 9", R.drawable.ic_true));
-        resultsArrayList.add(new Results("Cau 10", R.drawable.ic_false));
-        return resultsArrayList;
     }
 }
