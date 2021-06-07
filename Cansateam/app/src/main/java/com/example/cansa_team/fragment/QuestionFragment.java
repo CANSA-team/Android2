@@ -2,10 +2,13 @@ package com.example.cansa_team.fragment;
 
 
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -18,16 +21,21 @@ import com.example.cansa_team.Model.Results;
 import com.example.cansa_team.Model.TienIch;
 import com.example.cansa_team.QuestionActivity;
 import com.example.cansa_team.R;
+import com.squareup.picasso.Picasso;
 
-public class QuestionNoneImageFragment extends AbstractFragment {
+import java.util.ArrayList;
 
+public class QuestionFragment extends AbstractFragment {
+
+    private Results results;
     private int pos;
     private CauHoi cauHoi;
-    private Results results;
 
     private TextView txtCauHoi;
+    private ImageView imgHinhAnh;
     private RadioGroup answerGroup;
     private RadioButton btnAnswer;
+
 
     @Override
     public void setQuestion(CauHoi cauHoi, int pos) {
@@ -52,10 +60,18 @@ public class QuestionNoneImageFragment extends AbstractFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = null;
-        view = inflater.inflate(R.layout.fragment_question_none_image, container, false);
+        if(cauHoi.getHinhAnh().length() != 0){
+            view = inflater.inflate(R.layout.fragment_question_image, container, false);
+            //load hình từ firebase
+            imgHinhAnh = view.findViewById(R.id.img);
+            Picasso.get().load(cauHoi.getHinhAnh()).into(imgHinhAnh);
+        }
+        else {
+            view = inflater.inflate(R.layout.fragment_question_none_image, container, false);
+        }
+
 
         txtCauHoi = view.findViewById(R.id.txtCauHoi);
-        txtCauHoi.setText(cauHoi.getCauHoi().trim());
         answerGroup = view.findViewById(R.id.answer_group);
 
         //nếu mảng kết quả chưa có phần tử thì khởi tạo số phần tử theo từng loại bằng
@@ -65,6 +81,12 @@ public class QuestionNoneImageFragment extends AbstractFragment {
 
         //lấy kết quả từ mảng kết quả theo vị trí pos
         results = QuestionActivity.resultsArrayList.get(pos);
+
+
+
+
+        //set câu hỏi
+        txtCauHoi.setText(cauHoi.getCauHoi().trim());
 
         //duyệt mảng câu trả lời thêm vào RadioButton Group
         int id = 0;
@@ -77,6 +99,7 @@ public class QuestionNoneImageFragment extends AbstractFragment {
 
             //thêm RadioButton vào RadioGroup
             answerGroup.addView(btnAnswer);
+
         }
 
         //check vào button đã được chọn (chọn button đầu tiên nếu chưa chọn)

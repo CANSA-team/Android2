@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class TienIch {
-    public static <E> ArrayList<E> selectRandomElements(ArrayList<E> list, int amount)
+    public static <E> ArrayList<E> selectRandomElements(ArrayList<E> list, int amount, int start, int end)
     {
         // Avoid a deadlock
         if (amount >= list.size())
@@ -16,12 +16,14 @@ public class TienIch {
 
         ArrayList<E> selected = new ArrayList<>();
         Random random = new Random();
-        int listSize = list.size();
 
         // Get a random item until we got the requested amount
         while (selected.size() < amount)
         {
-            int randomIndex = random.nextInt(listSize);
+            int randomIndex = -1;
+            while (randomIndex < (start-1)){
+                randomIndex = random.nextInt(end);
+            }
             E element = list.get(randomIndex);
 
             if (!selected.contains(element))
@@ -31,6 +33,41 @@ public class TienIch {
         }
 
         return selected;
+    }
+
+    public static ArrayList<Integer> RandomDeathPoint(int n,int lengthCauHoi){
+        ArrayList<Integer> deathPoints = new ArrayList<Integer>();
+        Random random = new Random();
+        while (deathPoints.size() < n)
+        {
+            int randomIndex = -1;
+            randomIndex = random.nextInt(lengthCauHoi);
+
+            if (!deathPoints.contains(randomIndex))
+            {
+                deathPoints.add(randomIndex);
+            }
+        }
+        return deathPoints;
+    }
+
+    public static boolean checkResult(ArrayList<Results> resultsArrayList,ArrayList<Integer> deathPoints,int target){
+        boolean result = true;
+
+        if(countTrueChoseResults(resultsArrayList) < target)
+        {
+            result = false;
+        }
+
+        for (int deathPoint:
+             deathPoints) {
+            if((resultsArrayList.get(deathPoint).getResourceImage() == R.drawable.ic_false)){
+                result = false;
+                break;
+            }
+        }
+
+        return result;
     }
 
     public static String changeTimeToString(long time){

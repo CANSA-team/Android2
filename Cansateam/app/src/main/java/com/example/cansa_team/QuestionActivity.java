@@ -3,7 +3,6 @@ package com.example.cansa_team;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,8 +16,7 @@ import com.example.cansa_team.Model.CauHoi;
 import com.example.cansa_team.Model.Results;
 import com.example.cansa_team.Model.TienIch;
 import com.example.cansa_team.fragment.AbstractFragment;
-import com.example.cansa_team.fragment.QuestionImageFragment;
-import com.example.cansa_team.fragment.QuestionNoneImageFragment;
+import com.example.cansa_team.fragment.QuestionFragment;
 
 import java.util.ArrayList;
 
@@ -38,7 +36,6 @@ public class QuestionActivity extends AppCompatActivity {
     public static int countCauHoi = 0;
     private int pos = 0;
     private Intent intent;
-    private int questionID = 0;
     private ArrayList<CauHoi> cauHois;
     private String flagCauHoi;
     public static ArrayList<Results> resultsArrayList = new ArrayList<>();
@@ -149,12 +146,8 @@ public class QuestionActivity extends AppCompatActivity {
         ngược lại dán QuestionNoneImageFragment
         */
         txtTitle.setText((pos+1)+"/"+countCauHoi);
-        if (cauHois.get(pos).getHinhAnh().length() != 0){
-            fragment = new QuestionImageFragment();
-        }
-        else if (cauHois.get(pos).getHinhAnh().length() == 0){
-            fragment = new QuestionNoneImageFragment();
-        }
+            fragment = new QuestionFragment();
+
 
         fragment.setQuestion(cauHois.get(pos),pos);
         fragmentTransaction = getSupportFragmentManager().beginTransaction();

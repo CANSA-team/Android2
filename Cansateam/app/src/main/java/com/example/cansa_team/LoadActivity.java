@@ -33,64 +33,71 @@ public class LoadActivity extends AppCompatActivity {
     public static final String BANG_A3_A4 = "Bang A3,A4";
     public static final String BANG_B1 = "Bang B1";
     public static final String BANG_B2_C_D_E_F = "Bang B2, C, D, E, F";
-    public static final int COUNT_BANG_A = 20;
-    public static final int COUNT_BANG_B_C_D_E_F = 30;
     public static final String FLAG = "flag";
     public static final String COUNT_DOWN_BANG_A = "15:00";
     public static final String COUNT_DOWN_BANG_B_C_D_E_F = "20:00";
 
-    private FirebaseDatabase firebaseDatabase;
     private TextView txtWarning;
 
+    public static FirebaseDatabase firebaseDatabase;
+    public static boolean flag;
+    private  Intent intent;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.load_layout);
+        //chỉ duyệt data ở lần đầu vào màn hình
+        flag = true;
 
         if (ConnectionReceiver.isConnected()) {
             //Khởi tạo liên kết firebase tạo biến với từng loại bằng
             firebaseDatabase = FirebaseDatabase.getInstance();
 
+            //intent = new Intent(LoadActivity.this, MainActivity.class);
             firebaseDatabase.getReference().orderByValue().addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Log.d("TAG", "onDataChange: ");
-                    FirebaseData.bangA1 = new ArrayList<>();
-                    FirebaseData.bangA2 = new ArrayList<>();
-                    FirebaseData.bangA3_A4 = new ArrayList<>();
-                    FirebaseData.bangB1 = new ArrayList<>();
-                    FirebaseData.bangB2_C_D_E_F = new ArrayList<>();
-                    for (DataSnapshot data : snapshot.getChildren()) {
-                        switch (data.getKey()) {
-                            case BANG_A1:
-                                for (DataSnapshot dataChildren : data.getChildren()) {
-                                    FirebaseData.bangA1.add(dataChildren.getValue(CauHoi.class));
-                                }
-                                break;
-                            case BANG_A2:
-                                for (DataSnapshot dataChildren : data.getChildren()) {
-                                    FirebaseData.bangA2.add(dataChildren.getValue(CauHoi.class));
-                                }
-                                break;
-                            case BANG_A3_A4:
-                                for (DataSnapshot dataChildren : data.getChildren()) {
-                                    FirebaseData.bangA3_A4.add(dataChildren.getValue(CauHoi.class));
-                                }
-                                break;
-                            case BANG_B1:
-                                for (DataSnapshot dataChildren : data.getChildren()) {
-                                    FirebaseData.bangB1.add(dataChildren.getValue(CauHoi.class));
-                                }
-                                break;
-                            case BANG_B2_C_D_E_F:
-                                for (DataSnapshot dataChildren : data.getChildren()) {
-                                    FirebaseData.bangB2_C_D_E_F.add(dataChildren.getValue(CauHoi.class));
-                                }
-                                break;
+                    if(flag) {
+                        flag = false;
+                        intent = new Intent(LoadActivity.this, MainActivity.class);
+                        FirebaseData.bangA1 = new ArrayList<>();
+                        FirebaseData.bangA2 = new ArrayList<>();
+                        FirebaseData.bangA3_A4 = new ArrayList<>();
+                        FirebaseData.bangB1 = new ArrayList<>();
+                        FirebaseData.bangB2_C_D_E_F = new ArrayList<>();
+
+                        for (DataSnapshot data : snapshot.getChildren()) {
+                            switch (data.getKey()) {
+                                case BANG_A1:
+                                    for (DataSnapshot dataChildren : data.getChildren()) {
+                                        FirebaseData.bangA1.add(dataChildren.getValue(CauHoi.class));
+                                    }
+                                    break;
+                                case BANG_A2:
+                                    for (DataSnapshot dataChildren : data.getChildren()) {
+                                        FirebaseData.bangA2.add(dataChildren.getValue(CauHoi.class));
+                                    }
+                                    break;
+                                case BANG_A3_A4:
+                                    for (DataSnapshot dataChildren : data.getChildren()) {
+                                        FirebaseData.bangA3_A4.add(dataChildren.getValue(CauHoi.class));
+                                    }
+                                    break;
+                                case BANG_B1:
+                                    for (DataSnapshot dataChildren : data.getChildren()) {
+                                        FirebaseData.bangB1.add(dataChildren.getValue(CauHoi.class));
+                                    }
+                                    break;
+                                case BANG_B2_C_D_E_F:
+                                    for (DataSnapshot dataChildren : data.getChildren()) {
+                                        FirebaseData.bangB2_C_D_E_F.add(dataChildren.getValue(CauHoi.class));
+                                    }
+                                    break;
+                            }
                         }
+                        startActivity(intent);
+                        finish();
                     }
-                    startActivity(new Intent(LoadActivity.this, MainActivity.class));
-                    finish();
                 }
 
                 @Override

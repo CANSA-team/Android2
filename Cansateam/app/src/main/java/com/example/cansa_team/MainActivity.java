@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
             Bundle bundle = new Bundle();
             //lấy ngẫu nhiên số lượng câu hỏi theo loại bằng
-            ArrayList<CauHoi> cauHoiBangA1 = TienIch.selectRandomElements(FirebaseData.bangA1, LoadActivity.COUNT_BANG_A);
+            ArrayList<CauHoi> cauHoiBangA1 = FirebaseData.randomCauHoiBangA1();
             //tạo cờ xác định loại bằng chuyển qua
             flag = LoadActivity.BANG_A1;
             bundle.putParcelableArrayList(LoadActivity.BANG_A1, cauHoiBangA1);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
             Bundle bundle = new Bundle();
             //lấy ngẫu nhiên số lượng câu hỏi theo loại bằng
-            ArrayList<CauHoi> cauHoiBangA2 = TienIch.selectRandomElements(FirebaseData.bangA2, LoadActivity.COUNT_BANG_A);
+            ArrayList<CauHoi> cauHoiBangA2 = FirebaseData.randomCauHoiBangA2();
             //tạo cờ xác định loại bằng chuyển qua
             flag = LoadActivity.BANG_A2;
             bundle.putParcelableArrayList(LoadActivity.BANG_A2, cauHoiBangA2);
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
             Bundle bundle = new Bundle();
             //lấy ngẫu nhiên số lượng câu hỏi theo loại bằng
-            ArrayList<CauHoi> cauHoiBangA3_A4 = TienIch.selectRandomElements(FirebaseData.bangA3_A4, LoadActivity.COUNT_BANG_A);
+            ArrayList<CauHoi> cauHoiBangA3_A4 = FirebaseData.randomCauHoiBangA3_A4();
             //tạo cờ xác định loại bằng chuyển qua
             flag = LoadActivity.BANG_A3_A4;
             bundle.putParcelableArrayList(LoadActivity.BANG_A3_A4, cauHoiBangA3_A4);
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
             Bundle bundle = new Bundle();
             //lấy ngẫu nhiên số lượng câu hỏi theo loại bằng
-            ArrayList<CauHoi> cauHoiBangB1 = TienIch.selectRandomElements(FirebaseData.bangB1, LoadActivity.COUNT_BANG_B_C_D_E_F);
+            ArrayList<CauHoi> cauHoiBangB1 = FirebaseData.randomCauHoiBangB1();
             //tạo cờ xác định loại bằng chuyển qua
             flag = LoadActivity.BANG_B1;
             bundle.putParcelableArrayList(LoadActivity.BANG_B1, cauHoiBangB1);
@@ -114,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
             Bundle bundle = new Bundle();
             //lấy ngẫu nhiên số lượng câu hỏi theo loại bằng
-            ArrayList<CauHoi> cauHoiBangB2_C_D_E_F = TienIch.selectRandomElements(FirebaseData.bangB2_C_D_E_F, LoadActivity.COUNT_BANG_B_C_D_E_F);
+            ArrayList<CauHoi> cauHoiBangB2_C_D_E_F = FirebaseData.randomCauHoiBangB2_C_D_E_F();
+
             //tạo cờ xác định loại bằng chuyển qua
             flag = LoadActivity.BANG_B2_C_D_E_F;
             bundle.putParcelableArrayList(LoadActivity.BANG_B2_C_D_E_F, cauHoiBangB2_C_D_E_F);
