@@ -46,6 +46,7 @@ public class ResultActivity extends AppCompatActivity {
     private ArrayList<CauHoi> cauHois;
     private Boolean checkResult;
     private ArrayList<Integer> deathPoints;
+    private int nameLisence;
 
     private static final String SUCCESS = "Đậu";
     private static final String FAIL = "Trượt";
@@ -72,6 +73,7 @@ public class ResultActivity extends AppCompatActivity {
         countResult = resultsArrayList.size();
         flagCauHoi = bundle.get(LoadActivity.FLAG).toString();
         countDownTime = bundle.getString(flagCauHoi + "count down");
+        nameLisence = bundle.getInt(flagCauHoi + "name");
 
         //đếm số lượng câu đúng
         countTrueChose = TienIch.countTrueChoseResults(resultsArrayList);
@@ -127,6 +129,7 @@ public class ResultActivity extends AppCompatActivity {
                 bundle.putParcelableArrayList(flagCauHoi, cauHois);
                 bundle.putString(LoadActivity.FLAG, flagCauHoi);
                 bundle.putString(flagCauHoi + "count down", countDownTime);
+                bundle.putInt(flagCauHoi + "name", nameLisence);
                 intent.putExtras(bundle);
                 startActivity(intent);
                 finish();

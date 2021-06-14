@@ -28,6 +28,7 @@ public class QuestionActivity extends AppCompatActivity {
     private Button btnResult;
     private TextView txtCountdownTime;
     private TextView txtTitle;
+    private TextView txtLisenceName;
     private FragmentTransaction fragmentTransaction;
     private AbstractFragment fragment;
 
@@ -38,6 +39,7 @@ public class QuestionActivity extends AppCompatActivity {
     private Intent intent;
     private ArrayList<CauHoi> cauHois;
     private String flagCauHoi;
+    private int nameLisence;
     public static ArrayList<Results> resultsArrayList = new ArrayList<>();
 
     @Override
@@ -50,6 +52,7 @@ public class QuestionActivity extends AppCompatActivity {
         txtCountdownTime = findViewById(R.id.countdown_time);
         btnResult = findViewById(R.id.btn_result);
         txtTitle = findViewById(R.id.question_title);
+        txtLisenceName = findViewById(R.id.lisence_name);
 
         //nếu mảng kết quả đã có giá trị thì gán lại bằng 0 và khởi tạo số câu hỏi theo đề;
         if(resultsArrayList.size() > 0) {
@@ -63,12 +66,15 @@ public class QuestionActivity extends AppCompatActivity {
         flagCauHoi = bundle.get(LoadActivity.FLAG).toString();
         cauHois = bundle.getParcelableArrayList(flagCauHoi);
         countDownTime = bundle.getString(flagCauHoi+"count down");
+        nameLisence = bundle.getInt(flagCauHoi+"name");
 
         //lấy số lượng câu hỏi
         countCauHoi = cauHois.size();
 
         //thiết lập thời gian đếm ngược của bài thi
         txtCountdownTime.setText(countDownTime);
+
+        txtLisenceName.setText(nameLisence);
 
         /*
          * Chuyen tu man hinh question ve man hinh main bang nut exit
@@ -100,6 +106,11 @@ public class QuestionActivity extends AppCompatActivity {
             public void onFinish() {
                 intent.setClass(QuestionActivity.this, ResultActivity.class);
                 startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString(LoadActivity.FLAG, flagCauHoi);
+                bundle.putString(flagCauHoi + "count down", countDownTime);
+                bundle.putInt(flagCauHoi + "name", nameLisence);
+                intent.putExtras(bundle);
                 finish();
             }
         }.start();
@@ -116,6 +127,7 @@ public class QuestionActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString(LoadActivity.FLAG, flagCauHoi);
                 bundle.putString(flagCauHoi + "count down", countDownTime);
+                bundle.putInt(flagCauHoi + "name", nameLisence);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

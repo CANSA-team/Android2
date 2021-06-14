@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             bundle.putParcelableArrayList(LoadActivity.BANG_A1, cauHoiBangA1);
             bundle.putString(LoadActivity.FLAG, flag);
             bundle.putString(flag + "count down", LoadActivity.COUNT_DOWN_BANG_A);
+            bundle.putInt(flag + "name", R.string.tittile_license_a1);
             intent.putExtras(bundle);
             startActivity(intent);
 
@@ -69,12 +70,13 @@ public class MainActivity extends AppCompatActivity {
             bundle.putParcelableArrayList(LoadActivity.BANG_A2, cauHoiBangA2);
             bundle.putString(LoadActivity.FLAG, flag);
             bundle.putString(flag + "count down", LoadActivity.COUNT_DOWN_BANG_A);
+            bundle.putInt(flag + "name", R.string.tittile_license_a2);
             intent.putExtras(bundle);
             startActivity(intent);
         }
     };
 
-    private View.OnClickListener clickListenerBangA3_A4 = new View.OnClickListener() {
+    private View.OnClickListener clickListenerBangA3 = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
@@ -86,6 +88,25 @@ public class MainActivity extends AppCompatActivity {
             bundle.putParcelableArrayList(LoadActivity.BANG_A3_A4, cauHoiBangA3_A4);
             bundle.putString(LoadActivity.FLAG, flag);
             bundle.putString(flag + "count down", LoadActivity.COUNT_DOWN_BANG_A);
+            bundle.putInt(flag + "name", R.string.tittile_license_a3);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener clickListenerBangA4 = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+            Bundle bundle = new Bundle();
+            //lấy ngẫu nhiên số lượng câu hỏi theo loại bằng
+            ArrayList<CauHoi> cauHoiBangA3_A4 = FirebaseData.randomCauHoiBangA3_A4();
+            //tạo cờ xác định loại bằng chuyển qua
+            flag = LoadActivity.BANG_A3_A4;
+            bundle.putParcelableArrayList(LoadActivity.BANG_A3_A4, cauHoiBangA3_A4);
+            bundle.putString(LoadActivity.FLAG, flag);
+            bundle.putString(flag + "count down", LoadActivity.COUNT_DOWN_BANG_A);
+            bundle.putInt(flag + "name", R.string.tittile_license_a4);
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -103,12 +124,13 @@ public class MainActivity extends AppCompatActivity {
             bundle.putParcelableArrayList(LoadActivity.BANG_B1, cauHoiBangB1);
             bundle.putString(LoadActivity.FLAG, flag);
             bundle.putString(flag + "count down", LoadActivity.COUNT_DOWN_BANG_B_C_D_E_F);
+            bundle.putInt(flag + "name", R.string.tittile_license_b1);
             intent.putExtras(bundle);
             startActivity(intent);
         }
     };
 
-    private View.OnClickListener clickListenerBangB2_C_D_E_F = new View.OnClickListener() {
+    private View.OnClickListener clickListenerBangB2= new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
@@ -121,6 +143,83 @@ public class MainActivity extends AppCompatActivity {
             bundle.putParcelableArrayList(LoadActivity.BANG_B2_C_D_E_F, cauHoiBangB2_C_D_E_F);
             bundle.putString(LoadActivity.FLAG, flag);
             bundle.putString(flag + "count down", LoadActivity.COUNT_DOWN_BANG_B_C_D_E_F);
+            bundle.putInt(flag + "name", R.string.tittile_license_b2);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener clickListenerBangC = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+            Bundle bundle = new Bundle();
+            //lấy ngẫu nhiên số lượng câu hỏi theo loại bằng
+            ArrayList<CauHoi> cauHoiBangB2_C_D_E_F = FirebaseData.randomCauHoiBangB2_C_D_E_F();
+
+            //tạo cờ xác định loại bằng chuyển qua
+            flag = LoadActivity.BANG_B2_C_D_E_F;
+            bundle.putParcelableArrayList(LoadActivity.BANG_B2_C_D_E_F, cauHoiBangB2_C_D_E_F);
+            bundle.putString(LoadActivity.FLAG, flag);
+            bundle.putString(flag + "count down", LoadActivity.COUNT_DOWN_BANG_B_C_D_E_F);
+            bundle.putInt(flag + "name", R.string.tittile_license_c);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener clickListenerBangD = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+            Bundle bundle = new Bundle();
+            //lấy ngẫu nhiên số lượng câu hỏi theo loại bằng
+            ArrayList<CauHoi> cauHoiBangB2_C_D_E_F = FirebaseData.randomCauHoiBangB2_C_D_E_F();
+
+            //tạo cờ xác định loại bằng chuyển qua
+            flag = LoadActivity.BANG_B2_C_D_E_F;
+            bundle.putParcelableArrayList(LoadActivity.BANG_B2_C_D_E_F, cauHoiBangB2_C_D_E_F);
+            bundle.putString(LoadActivity.FLAG, flag);
+            bundle.putString(flag + "count down", LoadActivity.COUNT_DOWN_BANG_B_C_D_E_F);
+            bundle.putInt(flag + "name", R.string.tittile_license_d);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener clickListenerBangE = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+            Bundle bundle = new Bundle();
+            //lấy ngẫu nhiên số lượng câu hỏi theo loại bằng
+            ArrayList<CauHoi> cauHoiBangB2_C_D_E_F = FirebaseData.randomCauHoiBangB2_C_D_E_F();
+
+            //tạo cờ xác định loại bằng chuyển qua
+            flag = LoadActivity.BANG_B2_C_D_E_F;
+            bundle.putParcelableArrayList(LoadActivity.BANG_B2_C_D_E_F, cauHoiBangB2_C_D_E_F);
+            bundle.putString(LoadActivity.FLAG, flag);
+            bundle.putString(flag + "count down", LoadActivity.COUNT_DOWN_BANG_B_C_D_E_F);
+            bundle.putInt(flag + "name", R.string.tittile_license_e);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener clickListenerBangF = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+            Bundle bundle = new Bundle();
+            //lấy ngẫu nhiên số lượng câu hỏi theo loại bằng
+            ArrayList<CauHoi> cauHoiBangB2_C_D_E_F = FirebaseData.randomCauHoiBangB2_C_D_E_F();
+
+            //tạo cờ xác định loại bằng chuyển qua
+            flag = LoadActivity.BANG_B2_C_D_E_F;
+            bundle.putParcelableArrayList(LoadActivity.BANG_B2_C_D_E_F, cauHoiBangB2_C_D_E_F);
+            bundle.putString(LoadActivity.FLAG, flag);
+            bundle.putString(flag + "count down", LoadActivity.COUNT_DOWN_BANG_B_C_D_E_F);
+            bundle.putInt(flag + "name", R.string.tittile_license_fc);
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -146,13 +245,13 @@ public class MainActivity extends AppCompatActivity {
         //tạo sự kiện chuyển màn hình cho từng nút button
         licenseA1.setOnClickListener(clickListenerBangA1);
         licenseA2.setOnClickListener(clickListenerBangA2);
-        licenseA3.setOnClickListener(clickListenerBangA3_A4);
-        licenseA4.setOnClickListener(clickListenerBangA3_A4);
+        licenseA3.setOnClickListener(clickListenerBangA3);
+        licenseA4.setOnClickListener(clickListenerBangA4);
         licenseB1.setOnClickListener(clickListenerBangB1);
-        licenseB2.setOnClickListener(clickListenerBangB2_C_D_E_F);
-        licenseC.setOnClickListener(clickListenerBangB2_C_D_E_F);
-        licenseD.setOnClickListener(clickListenerBangB2_C_D_E_F);
-        licenseE.setOnClickListener(clickListenerBangB2_C_D_E_F);
-        licenseFC.setOnClickListener(clickListenerBangB2_C_D_E_F);
+        licenseB2.setOnClickListener(clickListenerBangB2);
+        licenseC.setOnClickListener(clickListenerBangC);
+        licenseD.setOnClickListener(clickListenerBangD);
+        licenseE.setOnClickListener(clickListenerBangE);
+        licenseFC.setOnClickListener(clickListenerBangF);
     }
 }

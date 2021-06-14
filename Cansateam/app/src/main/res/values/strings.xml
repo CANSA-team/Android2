@@ -1,16 +1,16 @@
 <resources>
     <string name="tag">btn_answer</string>
-    <string name="app_name">Project</string>
-    <string name="tittile_license_a1">License A1</string>
-    <string name="tittile_license_a2">License A2</string>
-    <string name="tittile_license_a3">License A3</string>
-    <string name="tittile_license_a4">License A4</string>
-    <string name="tittile_license_b1">License B1</string>
-    <string name="tittile_license_b2">License B2</string>
-    <string name="tittile_license_c">License C</string>
-    <string name="tittile_license_d">License D</string>
-    <string name="tittile_license_e">License E</string>
-    <string name="tittile_license_fc">License FC</string>
+    <string name="app_name">ATGT CANSA</string>
+    <string name="tittile_license_a1">Bằng A1</string>
+    <string name="tittile_license_a2">Bằng A2</string>
+    <string name="tittile_license_a3">Bằng A3</string>
+    <string name="tittile_license_a4">Bằng A4</string>
+    <string name="tittile_license_b1">Bằng B1</string>
+    <string name="tittile_license_b2">Bằng B2</string>
+    <string name="tittile_license_c">Bằng C</string>
+    <string name="tittile_license_d">Bằng D</string>
+    <string name="tittile_license_e">Bằng E</string>
+    <string name="tittile_license_fc">Bằng FC</string>
     <string name="courses">Courses</string>
     <string name="exit">Exit</string>
     <string name="string_dashboard">ATGT CANSA</string>
