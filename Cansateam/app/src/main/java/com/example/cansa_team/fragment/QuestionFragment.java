@@ -70,7 +70,6 @@ public class QuestionFragment extends AbstractFragment {
             view = inflater.inflate(R.layout.fragment_question_none_image, container, false);
         }
 
-
         txtCauHoi = view.findViewById(R.id.txtCauHoi);
         answerGroup = view.findViewById(R.id.answer_group);
 
@@ -81,9 +80,6 @@ public class QuestionFragment extends AbstractFragment {
 
         //lấy kết quả từ mảng kết quả theo vị trí pos
         results = QuestionActivity.resultsArrayList.get(pos);
-
-
-
 
         //set câu hỏi
         txtCauHoi.setText(cauHoi.getCauHoi().trim());

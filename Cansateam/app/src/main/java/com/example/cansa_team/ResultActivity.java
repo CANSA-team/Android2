@@ -63,7 +63,6 @@ public class ResultActivity extends AppCompatActivity {
         btnBackText = findViewById(R.id.btnBackText);
 
         //lấy dữ liệu từ màn hình QuestionActivity
-        Random random = new Random();
         Map<String, String> user_result = new HashMap<String, String>();
         intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -99,6 +98,7 @@ public class ResultActivity extends AppCompatActivity {
                 sendAndCheck(3,28,FirebaseData.randomCauHoiBangB2_C_D_E_F());
                 break;
         }
+
         totalResult = countTrueChose + "/" + resultsArrayList.size();
         //hiển thị ra màn hình kết quả đậu trượt
         total.setText(totalResult);
@@ -108,7 +108,6 @@ public class ResultActivity extends AppCompatActivity {
         //Gửi dữ liệu kết quả lên FireBase
         user_result.put(result, totalResult);
         reference.push().setValue(user_result);
-
 
         // Set Event
         home.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +141,6 @@ public class ResultActivity extends AppCompatActivity {
         listResult.setLayoutManager(gridLayoutManager);
         resultAdapter.setData(resultsArrayList);
         listResult.setAdapter(resultAdapter);
-
     }
 
     private void sendAndCheck(int n, int target, ArrayList<CauHoi> listCauHoi){

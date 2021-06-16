@@ -44,13 +44,18 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
             Bundle bundle = new Bundle();
+
             //lấy ngẫu nhiên số lượng câu hỏi theo loại bằng
             ArrayList<CauHoi> cauHoiBangA1 = FirebaseData.randomCauHoiBangA1();
             //tạo cờ xác định loại bằng chuyển qua
             flag = LoadActivity.BANG_A1;
+
             bundle.putParcelableArrayList(LoadActivity.BANG_A1, cauHoiBangA1);
+
             bundle.putString(LoadActivity.FLAG, flag);
+
             bundle.putString(flag + "count down", LoadActivity.COUNT_DOWN_BANG_A);
+
             bundle.putInt(flag + "name", R.string.tittile_license_a1);
             intent.putExtras(bundle);
             startActivity(intent);

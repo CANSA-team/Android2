@@ -43,7 +43,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:id="@+id/answer_group">
-
             </RadioGroup>
         </LinearLayout>
     </LinearLayout>

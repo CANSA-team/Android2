@@ -105,12 +105,12 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 intent.setClass(QuestionActivity.this, ResultActivity.class);
-                startActivity(intent);
                 Bundle bundle = new Bundle();
                 bundle.putString(LoadActivity.FLAG, flagCauHoi);
                 bundle.putString(flagCauHoi + "count down", countDownTime);
                 bundle.putInt(flagCauHoi + "name", nameLisence);
                 intent.putExtras(bundle);
+                startActivity(intent);
                 finish();
             }
         }.start();
@@ -122,7 +122,6 @@ public class QuestionActivity extends AppCompatActivity {
         btnResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 intent.setClass(QuestionActivity.this, ResultActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString(LoadActivity.FLAG, flagCauHoi);
@@ -130,13 +129,16 @@ public class QuestionActivity extends AppCompatActivity {
                 bundle.putInt(flagCauHoi + "name", nameLisence);
                 intent.putExtras(bundle);
                 startActivity(intent);
+                finish();
             }
         });
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 pos = (pos==(countCauHoi-1)) ? 0 : pos+1;
+
                 fragment.updateUserInteraction();
                 updateUI();
             }
@@ -145,7 +147,9 @@ public class QuestionActivity extends AppCompatActivity {
         btnPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 pos = (pos==0) ? (countCauHoi-1) : pos-1;
+
                 fragment.updateUserInteraction();
                 updateUI();
             }
