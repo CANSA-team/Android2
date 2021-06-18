@@ -35,14 +35,14 @@
                         android:layout_height="wrap_content"
                         android:text="@string/result_text"
                         android:textColor="@color/color_nav"
-                        android:textSize="35sp"
+                        android:textSize="30sp"
                         android:textStyle="bold" />
                     <TextView
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#F7853E"
-                        android:textSize="35sp"
+                        android:textSize="30sp"
                         android:id="@+id/txt_result"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/result_txt"
                     android:textColor="@color/black"
-                    android:textSize="28sp" />
+                    android:textSize="25sp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/result_true"
                     android:textColor="#FF0000"
-                    android:textSize="28sp" />
+                    android:textSize="25sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -100,7 +100,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="6"
         android:layout_marginTop="10dp"
         android:padding="10dp">
 

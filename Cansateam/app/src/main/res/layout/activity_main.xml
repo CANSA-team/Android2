@@ -33,11 +33,11 @@
         <GridLayout
             android:layout_marginTop="20dp"
             android:paddingBottom="30dp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:columnOrderPreserved="false"
-            android:rowCount="10"
-            android:columnCount="1"
+            android:rowCount="5"
+            android:columnCount="2"
             android:layout_gravity="center">
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
