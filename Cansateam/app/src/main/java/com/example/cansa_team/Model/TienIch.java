@@ -1,5 +1,7 @@
 package com.example.cansa_team.Model;
 
+import android.util.Log;
+
 import com.example.cansa_team.R;
 
 import java.util.ArrayList;
@@ -25,7 +27,6 @@ public class TienIch {
                 randomIndex = random.nextInt(end);
             }
             E element = list.get(randomIndex);
-
             if (!selected.contains(element))
             {
                 selected.add(element);

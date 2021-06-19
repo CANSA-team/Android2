@@ -3,6 +3,7 @@ package com.example.cansa_team;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -122,14 +123,8 @@ public class QuestionActivity extends AppCompatActivity {
         btnResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.setClass(QuestionActivity.this, ResultActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString(LoadActivity.FLAG, flagCauHoi);
-                bundle.putString(flagCauHoi + "count down", countDownTime);
-                bundle.putInt(flagCauHoi + "name", nameLisence);
-                intent.putExtras(bundle);
-                startActivity(intent);
-                finish();
+                countDownTimer.onFinish();
+                countDownTimer.cancel();
             }
         });
 
