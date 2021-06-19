@@ -64,6 +64,7 @@ public class QuestionFragment extends AbstractFragment {
             view = inflater.inflate(R.layout.fragment_question_image, container, false);
             //load hình từ firebase
             imgHinhAnh = view.findViewById(R.id.img);
+            //tự động load hình từ internet
             Picasso.get().load(cauHoi.getHinhAnh()).into(imgHinhAnh);
         }
         else {

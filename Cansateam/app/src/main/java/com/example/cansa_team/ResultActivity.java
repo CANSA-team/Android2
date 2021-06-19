@@ -123,7 +123,6 @@ public class ResultActivity extends AppCompatActivity {
                 Intent intent = new Intent(ResultActivity.this, QuestionActivity.class);
                 Bundle bundle = new Bundle();
 
-
                 //tạo cờ xác định loại bằng chuyển qua
                 bundle.putParcelableArrayList(flagCauHoi, cauHois);
                 bundle.putString(LoadActivity.FLAG, flagCauHoi);

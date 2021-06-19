@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoadActivity extends AppCompatActivity {
+    //hằng sử dụng cho toàn chương trình
     public static final String BANG_A1 = "Bang A1";
     public static final String BANG_A2 = "Bang A2";
     public static final String BANG_A3_A4 = "Bang A3,A4";
@@ -48,7 +49,7 @@ public class LoadActivity extends AppCompatActivity {
         setContentView(R.layout.load_layout);
         //chỉ duyệt data ở lần đầu vào màn hình
         flag = true;
-
+        //kiểm tra có inernet không?
         if (ConnectionReceiver.isConnected()) {
             //Khởi tạo liên kết firebase tạo biến với từng loại bằng
             firebaseDatabase = FirebaseDatabase.getInstance();
@@ -60,6 +61,7 @@ public class LoadActivity extends AppCompatActivity {
                     if(flag) {
                         flag = false;
                         intent = new Intent(LoadActivity.this, MainActivity.class);
+                        //khời tạo đối tượng loại bằng
                         FirebaseData.bangA1 = new ArrayList<>();
                         FirebaseData.bangA2 = new ArrayList<>();
                         FirebaseData.bangA3_A4 = new ArrayList<>();
@@ -67,6 +69,7 @@ public class LoadActivity extends AppCompatActivity {
                         FirebaseData.bangB2_C_D_E_F = new ArrayList<>();
 
                         for (DataSnapshot data : snapshot.getChildren()) {
+                            //lưu dữ liệu vào đối tượng theo từng loại bằng
                             switch (data.getKey()) {
                                 case BANG_A1:
                                     for (DataSnapshot dataChildren : data.getChildren()) {
@@ -95,6 +98,7 @@ public class LoadActivity extends AppCompatActivity {
                                     break;
                             }
                         }
+                        //chuyển đến màn hình main
                         startActivity(intent);
                         finish();
                     }
@@ -107,6 +111,7 @@ public class LoadActivity extends AppCompatActivity {
             });
         }
         else {
+            //khi không có internet
             String warning = "Không có kết nối Internet!";
             Toast.makeText(this,warning,Toast.LENGTH_LONG).show();
             txtWarning = findViewById(R.id.txt_warning);
