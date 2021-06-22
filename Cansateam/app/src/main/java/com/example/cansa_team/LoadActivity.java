@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoadActivity extends AppCompatActivity {
+
     //hằng sử dụng cho toàn chương trình
     public static final String BANG_A1 = "Bang A1";
     public static final String BANG_A2 = "Bang A2";
@@ -99,8 +100,8 @@ public class LoadActivity extends AppCompatActivity {
                             }
                         }
                         //chuyển đến màn hình main
-                        startActivity(intent);
                         finish();
+                        startActivity(intent);
                     }
                 }
 

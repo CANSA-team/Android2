@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.cansa_team.Data.FirebaseData;
 import com.example.cansa_team.Model.CauHoi;
+import com.example.cansa_team.Model.ConnectionReceiver;
 import com.example.cansa_team.Model.TienIch;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -259,5 +260,14 @@ public class MainActivity extends AppCompatActivity {
         licenseD.setOnClickListener(clickListenerBangD);
         licenseE.setOnClickListener(clickListenerBangE);
         licenseFC.setOnClickListener(clickListenerBangF);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!ConnectionReceiver.isConnected()) {
+            Intent intent = new Intent(MainActivity.this, LoadActivity.class);
+            startActivity(intent);
+        }
     }
 }

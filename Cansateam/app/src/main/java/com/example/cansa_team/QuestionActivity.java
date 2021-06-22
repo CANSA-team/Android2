@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cansa_team.Model.CauHoi;
+import com.example.cansa_team.Model.ConnectionReceiver;
 import com.example.cansa_team.Model.Results;
 import com.example.cansa_team.Model.TienIch;
 import com.example.cansa_team.fragment.AbstractFragment;
@@ -105,6 +106,7 @@ public class QuestionActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                finish();
                 intent.setClass(QuestionActivity.this, ResultActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString(LoadActivity.FLAG, flagCauHoi);
@@ -112,7 +114,6 @@ public class QuestionActivity extends AppCompatActivity {
                 bundle.putInt(flagCauHoi + "name", nameLisence);
                 intent.putExtras(bundle);
                 startActivity(intent);
-                finish();
             }
         }.start();
 
@@ -164,5 +165,14 @@ public class QuestionActivity extends AppCompatActivity {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_id, fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!ConnectionReceiver.isConnected()) {
+            Intent intent = new Intent(QuestionActivity.this, LoadActivity.class);
+            startActivity(intent);
+        }
     }
 }

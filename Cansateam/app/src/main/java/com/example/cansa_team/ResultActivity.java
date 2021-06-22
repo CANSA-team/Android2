@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cansa_team.Data.FirebaseData;
 import com.example.cansa_team.Model.CauHoi;
+import com.example.cansa_team.Model.ConnectionReceiver;
 import com.example.cansa_team.Model.Results;
 import com.example.cansa_team.Model.TienIch;
 import com.example.cansa_team.adapter.ResultAdapter;
@@ -120,6 +121,7 @@ public class ResultActivity extends AppCompatActivity {
         btnBackText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 Intent intent = new Intent(ResultActivity.this, QuestionActivity.class);
                 Bundle bundle = new Bundle();
 
@@ -130,7 +132,6 @@ public class ResultActivity extends AppCompatActivity {
                 bundle.putInt(flagCauHoi + "name", nameLisence);
                 intent.putExtras(bundle);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -147,5 +148,14 @@ public class ResultActivity extends AppCompatActivity {
         checkResult = TienIch.checkResult(resultsArrayList, deathPoints, target);
         result = checkResult ? SUCCESS : FAIL;
         cauHois = listCauHoi;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!ConnectionReceiver.isConnected()) {
+            Intent intent = new Intent(ResultActivity.this, LoadActivity.class);
+            startActivity(intent);
+        }
     }
 }
