@@ -81,6 +81,7 @@ public class ResultActivity extends AppCompatActivity {
         /* kiểm tra trượt/đậu
          *  lấy ngẫu nhiên số lượng câu hỏi theo loại bằng
          * */
+
         cauHois = new ArrayList<>();
         switch (flagCauHoi) {
             case LoadActivity.BANG_A1:

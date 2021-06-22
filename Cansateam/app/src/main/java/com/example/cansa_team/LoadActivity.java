@@ -55,7 +55,7 @@ public class LoadActivity extends AppCompatActivity {
             //Khởi tạo liên kết firebase tạo biến với từng loại bằng
             firebaseDatabase = FirebaseDatabase.getInstance();
 
-            //intent = new Intent(LoadActivity.this, MainActivity.class);
+            //Luồng Firebase
             firebaseDatabase.getReference().orderByValue().addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
