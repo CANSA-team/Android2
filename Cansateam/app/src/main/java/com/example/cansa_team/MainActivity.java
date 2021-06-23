@@ -8,24 +8,15 @@ import android.util.Log;
 import com.example.cansa_team.Data.FirebaseData;
 import com.example.cansa_team.Model.CauHoi;
 import com.example.cansa_team.Model.ConnectionReceiver;
-import com.example.cansa_team.Model.TienIch;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.annotations.NotNull;
 
 import android.view.View;
 import android.widget.LinearLayout;
 
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private LinearLayout licenseA1;
